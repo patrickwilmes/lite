@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.5"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id(Plugins.springBootPlugin) version Versions.springBootVersion
+    id(Plugins.springDependencyManagementPlugin) version Versions.springDependencyManagementVersion
+    kotlin(Plugins.kotlinJvmPlugin) version Versions.kotlinVersion
+    kotlin(Plugins.kotlinSpringPlugin) version Versions.kotlinVersion
+    kotlin(Plugins.kotlinJpaPlugin) version Versions.kotlinVersion
 }
 
 group = "com.sevdesk.lite"
@@ -23,15 +23,21 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.liquibase:liquibase-core")
-    runtimeOnly("com.h2database:h2")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(Dependencies.springBootStarterDataJpa)
+    implementation(Dependencies.springBootStarterWeb)
+    implementation(Dependencies.jacksonModuleKotlin)
+    implementation(Dependencies.kotlinReflect)
+    implementation(Dependencies.kotlinStdLibJdk8)
+    implementation(Dependencies.liquibaseCore)
+    implementation(platform(Dependencies.arrowStack))
+    implementation(Dependencies.arrowCore)
+
+    runtimeOnly(Dependencies.h2Datbase)
+    annotationProcessor(Dependencies.springBootAnnotationProcessor)
+
+    testImplementation(Dependencies.springBootStarterTest)
+    testImplementation(Dependencies.mockk)
+    testImplementation(Dependencies.assertK)
 }
 
 tasks.withType<KotlinCompile> {
