@@ -17,8 +17,8 @@ class InvoiceService(private val invoiceRepository: InvoiceRepository) {
 
     fun saveInvoice(
         invoice: Invoice
-    ): Invoice {
-        invoice.creationDate = OffsetDateTime.now()
-        return invoiceRepository.save(invoice)
-    }
+    ): Invoice =
+        invoice.copy(creationDate = OffsetDateTime.now()).let { invoiceWithCreationDate ->
+            invoiceRepository.save(invoiceWithCreationDate)
+        }
 }

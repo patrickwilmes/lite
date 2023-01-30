@@ -1,23 +1,16 @@
 package com.sevdesk.lite.invoice.entity
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "CUSTOMERS")
-class Customer {
+data class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: Long? = null
-
+    val id: Long? = null,
     @Column(name = "givenname")
-    var givenname: String? = null
-
+    val givenname: String? = null,
     @Column(name = "surname")
-    var surname: String? = null
-}
+    val surname: String? = null,
+)
