@@ -1,0 +1,24 @@
+### GET
+GET http://localhost:8081/invoices
+
+### POST
+POST http://localhost:8081/invoices
+Content-Type: application/json
+
+{
+  "status": "OPEN",
+  "creationDate": "2023-01-20T10:18:18+01:00",
+  "dueDate": "2023-01-20",
+  "invoiceNumber": "ABC-123",
+  "quantity": 1.0,
+  "priceNet": 14.99,
+  "priceGross": 15.99,
+  "customer": {
+    "givenname": "Guybrush",
+    "surname": "Threepwood"
+  }
+}
+
+###
+GET http://localhost:8081/users/1
+

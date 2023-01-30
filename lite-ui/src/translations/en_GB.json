@@ -1,0 +1,13 @@
+{
+  "EDIT_INVOICE": "Edit invoice",
+  "DATE": "Date",
+  "NAME": "Name",
+  "SURNAME": "Surname",
+  "CUSTOMER": "Customer",
+  "PRICE": "Price",
+  "PRICE_NET": "Price (Net)",
+  "PRICE_BRUT": "Price (Brut)",
+  "INVOICE_FORM_DATE_LABEL": "Enter due date of the invoice",
+  "INVOICE_FORM_CUSTOMER_LABEL": "Enter the name and surname of the customer the invoice belongs to",
+  "CREATE_INVOICE": "CREATE_INVOICE"
+}

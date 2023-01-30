@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: sevDesk-lite
+  banner:
+    location: classpath:/sevDesk.txt
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.yml
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=true;AUTO_SERVER=true;CASE_INSENSITIVE_IDENTIFIERS=TRUE;
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 8081
