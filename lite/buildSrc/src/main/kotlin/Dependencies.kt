@@ -7,6 +7,8 @@ object Dependencies {
     val liquibaseCore = "org.liquibase:liquibase-core"
     val arrowStack = "io.arrow-kt:arrow-stack:${Versions.arrowStackVersion}"
     val arrowCore = "io.arrow-kt:arrow-core"
+    val kotlinXCoroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
 
     val h2Datbase = "com.h2database:h2"
     val springBootAnnotationProcessor = "org.springframework.boot:spring-boot-configuration-processor"

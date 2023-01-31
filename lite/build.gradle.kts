@@ -31,6 +31,7 @@ dependencies {
     implementation(Dependencies.liquibaseCore)
     implementation(platform(Dependencies.arrowStack))
     implementation(Dependencies.arrowCore)
+    implementation(Dependencies.kotlinXCoroutines)
 
     runtimeOnly(Dependencies.h2Datbase)
     annotationProcessor(Dependencies.springBootAnnotationProcessor)
