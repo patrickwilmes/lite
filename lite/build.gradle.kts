@@ -25,6 +25,7 @@ repositories {
 dependencies {
     implementation(Dependencies.springBootStarterDataJpa)
     implementation(Dependencies.springBootStarterWeb)
+    implementation(Dependencies.springBootStarterSecurity)
     implementation(Dependencies.jacksonModuleKotlin)
     implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.kotlinStdLibJdk8)

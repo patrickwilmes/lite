@@ -1,6 +1,7 @@
 object Dependencies {
     val springBootStarterDataJpa = "org.springframework.boot:spring-boot-starter-data-jpa"
     val springBootStarterWeb = "org.springframework.boot:spring-boot-starter-web"
+    val springBootStarterSecurity = "org.springframework.boot:spring-boot-starter-security"
     val jacksonModuleKotlin = "com.fasterxml.jackson.module:jackson-module-kotlin"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect"
     val kotlinStdLibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

@@ -8,17 +8,23 @@ import com.sevdesk.lite.failure.trap
 import com.sevdesk.lite.invoice.Invoice
 import com.sevdesk.lite.invoice.InvoiceUseCase
 import com.sevdesk.lite.invoice.adapter.persistence.InvoiceRepository
+import org.springframework.security.access.annotation.Secured
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
+import javax.annotation.security.RolesAllowed
 
 @Service
 class InvoiceService(private val invoiceRepository: InvoiceRepository) : InvoiceUseCase {
 
+    @PreAuthorize("hasRole('USER') or hasRole('VIEWER')")
     override fun getAllInvoices(): Either<Failure, List<Invoice>> =
         trap {
             invoiceRepository.findAll().toList()
         }
 
+    @PreAuthorize("hasRole('USER') or hasRole('VIEWER')")
     override suspend fun getInvoice(id: Long): Either<Failure, Invoice> =
         either {
             val possibleInvoice = trap {
@@ -27,6 +33,7 @@ class InvoiceService(private val invoiceRepository: InvoiceRepository) : Invoice
             ensureNotNull(possibleInvoice) { Failure.NotFoundFailure(id, Invoice::class) }
         }
 
+    @PreAuthorize("hasRole('USER')")
     override fun saveInvoice(
         invoice: Invoice
     ): Either<Failure, Invoice> =
@@ -36,6 +43,7 @@ class InvoiceService(private val invoiceRepository: InvoiceRepository) : Invoice
             }
         }
 
+    @PreAuthorize("hasRole('USER')")
     override fun deleteInvoice(id: Long): Either<Failure, Unit> =
         trap {
             invoiceRepository.deleteById(id)
