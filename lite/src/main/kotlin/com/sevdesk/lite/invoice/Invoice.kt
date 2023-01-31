@@ -1,5 +1,6 @@
-package com.sevdesk.lite.invoice.entity
+package com.sevdesk.lite.invoice
 
+import com.sevdesk.lite.customer.Customer
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.OffsetDateTime

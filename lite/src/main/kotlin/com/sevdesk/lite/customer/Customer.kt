@@ -1,4 +1,4 @@
-package com.sevdesk.lite.invoice.entity
+package com.sevdesk.lite.customer
 
 import javax.persistence.*
 

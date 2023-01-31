@@ -1,8 +1,8 @@
-package com.sevdesk.lite.invoice.boundary
+package com.sevdesk.lite.invoice.adapter.rest
 
-import com.sevdesk.lite.invoice.control.InvoiceRepository
-import com.sevdesk.lite.invoice.control.InvoiceService
-import com.sevdesk.lite.invoice.entity.Invoice
+import com.sevdesk.lite.invoice.adapter.persistence.InvoiceRepository
+import com.sevdesk.lite.invoice.service.InvoiceService
+import com.sevdesk.lite.invoice.Invoice
 import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/invoices")
 @Validated
-class InvoiceBoundary(
-    private val invoiceRepository: InvoiceRepository,
+class InvoiceController(
     private val invoiceService: InvoiceService
 ) {
 
@@ -50,6 +49,6 @@ class InvoiceBoundary(
     fun deleteInvoice(
         @PathVariable("id") id: Long
     ) {
-        invoiceRepository.deleteById(id)
+        invoiceService.deleteInvoice(id)
     }
 }

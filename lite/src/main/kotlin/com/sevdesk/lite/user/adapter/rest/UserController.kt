@@ -1,4 +1,4 @@
-package com.sevdesk.lite.user
+package com.sevdesk.lite.user.adapter.rest
 
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/users")
 @Validated
-class UserBoundary {
+class UserController {
 
     @GetMapping("/{id}")
     fun getAllInvoices(
