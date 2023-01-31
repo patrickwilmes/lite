@@ -14,19 +14,20 @@ data class Invoice(
     @Column(name = "id", nullable = false)
     val id: Long? = null,
     @Column(name = "status", length = 50)
-    val status: String? = null,
+    val status: InvoiceStatus = InvoiceStatus.Open,
     @Column(name = "creation_date")
     val creationDate: OffsetDateTime? = null,
     @Column(name = "due_date")
-    val dueDate: LocalDate? = null,
+    val dueDate: LocalDate,
     @Column(name = "invoice_number")
-    val invoiceNumber: String? = null,
+    val invoiceNumber: String,
     @Column(name = "quantity")
-    val quantity: BigDecimal? = null,
+    val quantity: BigDecimal,
     @Column(name = "price_net")
-    val priceNet: BigDecimal? = null,
-    @Column(name = "price_gross")
-    val priceGross: BigDecimal? = null,
+    val priceNet: BigDecimal,
     @ManyToOne(cascade = [CascadeType.ALL])
-    val customer: Customer? = null,
-)
+    val customer: Customer,
+) {
+    @get:Column(name = "price_gross")
+    val priceGross = priceNet.plus(priceNet.times(BigDecimal(0.17)))
+}

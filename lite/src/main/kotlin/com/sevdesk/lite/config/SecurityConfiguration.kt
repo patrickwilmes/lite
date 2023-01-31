@@ -2,10 +2,13 @@ package com.sevdesk.lite.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
+import org.springframework.security.web.SecurityFilterChain
 
 /*
 In order to secure the application from unauthorized third parties,
@@ -33,6 +36,14 @@ access to a resource is permitted to use the resource.
 @EnableWebSecurity
 @EnableMethodSecurity
 class SecurityConfiguration {
+
+    @Bean
+    fun httpSecurity(httpSecurity: HttpSecurity): SecurityFilterChain {
+        return httpSecurity
+            .httpBasic(Customizer.withDefaults())
+            .csrf().disable()
+            .build()
+    }
 
     @Bean
     fun userDetailsService(): InMemoryUserDetailsManager {
