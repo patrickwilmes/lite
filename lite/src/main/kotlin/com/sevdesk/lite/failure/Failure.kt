@@ -1,6 +1,5 @@
 package com.sevdesk.lite.failure
 
-import com.sevdesk.lite.invoice.adapter.rest.InvoiceController
 import org.slf4j.Logger
 import org.springframework.http.ResponseEntity
 import kotlin.reflect.KClass
@@ -8,6 +7,8 @@ import kotlin.reflect.KClass
 sealed class Failure(
     val message: String,
 ) {
+    class ValidationFailure(message: String) : Failure(message)
+
     data class NotFoundFailure(val id: Long, private val domainType: KClass<*>) :
         Failure("No element with id $id for type ${domainType.simpleName} found!")
 
@@ -16,13 +17,19 @@ sealed class Failure(
 }
 
 fun <T> transformToResponseEntity(failure: Failure, logger: Logger): ResponseEntity<T> =
-    when(failure) {
+    when (failure) {
         is Failure.EncapsulatedExceptionFailure -> {
             logger.error(failure.message)
-            ResponseEntity.internalServerError().build<T>()
+            ResponseEntity.internalServerError().build()
         }
-        is Failure.NotFoundFailure ->  {
+
+        is Failure.NotFoundFailure -> {
             logger.warn(failure.message)
             ResponseEntity.notFound().build()
+        }
+
+        is Failure.ValidationFailure -> {
+            logger.warn(failure.message)
+            ResponseEntity.badRequest().build()
         }
     }
